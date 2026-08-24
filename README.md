@@ -1,4 +1,4 @@
-# [Nombre del equipo]
+# QuickMap
 
 Integrantes: Matías García, Ignacio Romero, Agostina Mottura, Federico Castro, Facundo Carballo
 
