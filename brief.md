@@ -1,4 +1,4 @@
-# Brief de Producto: QuickMa
+# Brief de Producto: QuickMap
 **Versión de Documento:** 1.0  
 **Fecha:** 23 de Agosto de 2026  
 **Materia:** Gestión Aplicada al Desarrollo de Software II (3665)  
