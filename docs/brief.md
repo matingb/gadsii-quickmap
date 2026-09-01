@@ -94,6 +94,28 @@ El producto interactuará con dos perfiles de usuarios diferenciados dentro de l
 
 Hemos seleccionado a los **Estudiantes de Primeros Años** como nuestro grupo primario de análisis y diseño. Un estudiante avanzado ya ha desarrollado estrategias (manuales y costosas en tiempo) para sobrevivir al sistema. En cambio, en los primeros años es donde se genera el mayor dolor inicial, donde se toman decisiones erróneas por falta de información y donde una solución como QuickMap tiene el mayor poder preventivo, evitando la deserción y optimizando el trayecto educativo desde el día uno.
 
+### Perfil del usuario real
+
+Encuestamos a estudiantes de primeros y últimos años de la UNLaM para obtener información y perspectivas de alumnos que recién ingresan y alumnos que ya pasaron años en la Universidad; este contraste es de alto valor para validar que nuestro producto va a ser útil no solamente para los estudiantes de primeros años sino también para estudiantes ya avanzados. El 64% se encuentra en los primeros años de cursada y manifiesta una dependencia absoluta de metodologías informales para la autogestión de sus trayectorias institucionales.
+
+### Necesidades
+
+Lo que necesitan, que hoy no tienen es tener la información brindada de una manera amigable para que el estudiante pueda entender fácilmente cuales son los caminos críticos de tu carrera.
+
+* **Automatización del Historial:** Urgencia de prescindir de la carga manual. Los usuarios demandan que sus materias aprobadas se sincronicen de manera directa sin intervenciones propensas a errores.
+* **Visibilidad del Camino Crítico:** Necesidad explícita de recibir sugerencias de rutas óptimas mediante alertas o recomendaciones predictivas antes de cada período de inscripción para evitar bloqueos futuros.
+* **Centralización de Indicadores:** Centralizar en una única interfaz gráfica el porcentaje exacto de avance de la carrera y el promedio dinámico recalculado en tiempo real.
+
+### Problemas
+
+* **Opacidad de los Formatos Oficiales:** El formato estático en texto plano o PDF provisto por la facultad impide dimensionar la interconectividad de las correlatividades, induciendo a confusiones estructurales.
+* **Bloqueos Curriculares Involuntarios:** La mayor frustración detectada radica en no percatarse a tiempo de qué asignaturas bloquean a otras a mediano plazo, obstaculizando el avance fluido.
+* **Colapso del Sistema y Cupos:** Fricciones críticas al momento de la inscripción debido a la saturación de las plataformas oficiales y la falta de alternativas ante la ausencia de vacantes planificadas.
+
+### Contexto de uso
+
+**Dispositivos y Condiciones:** Si bien la planificación profunda se realiza prioritariamente desde computadoras de escritorio o notebooks en el hogar (para evaluar escenarios con tiempo), existe un uso simultáneo y de alta frecuencia desde teléfonos celulares (Smartphones) en condiciones de movilidad o apuro laboral para verificar estados académicos rápidos.
+
 ---
 
 ## 5. Los Supuestos del Proyecto
@@ -114,3 +136,17 @@ Hemos identificado los siguientes supuestos que consideramos verdaderos para el 
 * **Potencial Evidencia:** Indagar si los estudiantes conocen o han escuchado sobre alguna iniciativa o actualización oficial del sistema Intraconsulta orientada al seguimiento gráfico interactivo de correlatividades.
 * **Supuesto 7:** *"Asumimos que una visualización clara del porcentaje exacto de avance de la carrera y el promedio dinámico actúa como un factor motivacional positivo que incentiva al alumno a continuar con sus estudios en momentos de frustración académica."*
 * **Potencial Evidencia:** Presentar una representación o boceto conceptual de porcentaje de avance y consultar al estudiante si ver reflejado su progreso de forma clara modificaría su nivel de motivación ante dificultades académicas.
+
+| Supuesto del TP1 | ¿Se confirmó? | Evidencia que lo sostiene o refuta |
+| :--- | :--- | :--- |
+| 1 | Sí | Múltiples encuestados señalaron explícitamente como dificultad "El formato en el que lo entrega la facultad (texto plano o PDF)" |
+| 2 | Sí | Validado como el punto de mayor frustración por los alumnos: "No darme cuenta de qué materias me van a bloquear otras más adelante" |
+| 3 | Sí | Alta demanda de la funcionalidad "Historial automático: Que mis materias aprobadas se sincronicen solas sin cargarlas a mano" |
+| 4 | Sí | Los datos reflejan un uso extendido de "Excel propio", "Cálculo manual con calculadora" y consultas en "Grupos de WhatsApp" |
+| 5 | Sí | Estudiantes de Educación Física y Nutrición indicaron explícitamente la complejidad de "Entender la tabla de equivalencias" |
+| 6 | No | Los estudiantes se limitan a usar Intraconsulta por "Prueba y error" en el momento, sin conocer planes del departamento |
+| 7 | Sí | Masiva selección de opciones orientadas a incorporar "Indicadores duros de progreso" y "Esquemas de semáforos por colores" |
+
+## 6. Hipótesis de valor
+
+Creemos que los estudiantes de los primeros años de la UNLaM (1° y 2° año de cursada) tienen el problema de la desorientación en la planificación de sus cuatrimestres debido a la opacidad de los planes de estudio en PDF y la consecuente frustración de incurrir en bloqueos involuntarios de correlatividades por no visualizar el camino crítico. Nuestra solución es QuickMap: una plataforma interactiva basada en un mapa de red de correlatividades con código de colores (semáforo), proyecciones predictivas de trayectorias óptimas y sincronización automatizada del historial académico. Sabremos que estamos en lo correcto cuando logremos que el 80% de los usuarios testeados en el MVP del TP5 utilicen la proyección del camino crítico para estructurar su simulación de inscripción, y declaren una reducción significativa en el tiempo invertido en calcular su promedio y verificar sus materias habilitadas.
