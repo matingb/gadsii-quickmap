@@ -150,3 +150,52 @@ Hemos identificado los siguientes supuestos que consideramos verdaderos para el 
 ## 6. Hipótesis de valor
 
 Creemos que los estudiantes de los primeros años de la UNLaM (1° y 2° año de cursada) tienen el problema de la desorientación en la planificación de sus cuatrimestres debido a la opacidad de los planes de estudio en PDF y la consecuente frustración de incurrir en bloqueos involuntarios de correlatividades por no visualizar el camino crítico. Nuestra solución es QuickMap: una plataforma interactiva basada en un mapa de red de correlatividades con código de colores (semáforo), proyecciones predictivas de trayectorias óptimas y sincronización automatizada del historial académico. Sabremos que estamos en lo correcto cuando logremos que el 80% de los usuarios testeados en el MVP del TP5 utilicen la proyección del camino crítico para estructurar su simulación de inscripción, y declaren una reducción significativa en el tiempo invertido en calcular su promedio y verificar sus materias habilitadas.
+
+# Trabajo práctico 3: Scope del MVP y Diseño de la Interacción
+
+## Parte 1 - Qué construir
+
+### 1. Scope del MVP
+
+La hipótesis de valor formulada en el TP 2 es:
+
+Creemos que los estudiantes de los primeros años de la UNLaM (1° y 2° año de cursada) tienen el problema de la desorientación en la planificación de sus cuatrimestres debido a la opacidad de los planes de estudio en PDF y la consecuente frustración de incurrir en bloqueos involuntarios de correlatividades por no visualizar el camino crítico. Nuestra solución es QuickMap: una plataforma interactiva basada en un mapa de red de correlatividades con código de colores (semáforo), proyecciones predictivas de trayectorias óptimas y sincronización automatizada del historial académico. Sabremos que estamos en lo correcto cuando logremos que el 80% de los usuarios testeados en el MVP del TP5 utilicen la proyección del camino crítico para estructurar su simulación de inscripción, y declaren una reducción significativa en el tiempo invertido en calcular su promedio y verificar sus materias habilitadas.
+
+| Incluido en el MVP | Para qué parte de la hipótesis sirve |
+| :--- | :--- |
+| Selección de la carrera | Sirve para poder mostrarle el mapa de materias asociado a la carrera que está cursando el alumno que utilice el producto. No sirve de nada mostrar un mapa genérico porque los usuarios podrían no comprender el impacto de lo que representa ver visualmente el orden y distribución de materias de su carrera, ni tampoco mostrar un mapa específico de una sola carrer, ya que nuestra hipótesis de valor se sustenta a través de alumnos de distintas carreras tienen problemas similares. |
+| Mapa de materias | Es la base fundamental de nuestro producto, es a partir de él que vamos a poder desarrollar todas funcionalidades en el futuro y es lo que nos permitirá entender si al usuario le convence nuestro producto o no. Sirve para la parte de la hipótesis en la cual se menciona que los usuarios tienen problemas al entender los planes de estudio en formato PDF (listado). |
+| Camino crítico | Se fundamenta en la parte de la hipótesis que menciona que los alumnos sufren de mucha frustración debido a bloqueos involuntarios por desconocer aquellas materias que desbloquean muchas otras materias, o aquellas materias que necesitan de muchas otras materias previas para poder ser cursadas. |
+
+| Excluido del MVP | Por qué se excluye |
+| :--- | :--- |
+| Login del usuario | En el MVP no es necesario persistir el estado del alumno, sólo se necesita que interactúe con el mapa y pueda visualizar el camino crítico según sus materias disponibles. Por lo tanto, esta funcionalidad no es importante para validar la hipótesis. |
+| Promedio del alumno | Para poder conocer el promedio del alumno es necesario realizar una integración con la plataforma Intraconsulta para conocer la nota final de cada materia aprobada/promocionada, lo cual requiere de un esfuerzo que no es necesario para validar la hipótesis porque no es uno de los principales problemas de los alumnos. Además, se debería persistir información del alumno, lo cual ya se mencionó anteriormente que no es necesario para validar la hipótesis. |
+| Porcentaje de completitud de la carrera | Para poder conocer el porcentaje de completitud de la carrera del alumno es necesario realizar una integración con la plataforma Intraconsulta para conocer el historial de materias del alumno, lo cual requiere de un esfuerzo que no es necesario para validar la hipótesis porque no es uno de los principales problemas de los alumnos. Además, se debería persistir información del alumno, lo cual ya se mencionó anteriormente que no es necesario para validar la hipótesis. |
+| Historial de materias aprobadas | Para poder conocer el historial de materias aprobadas del alumno es necesario realizar una integración con la plataforma Intraconsulta para conocer el historial de materias del alumno, lo cual requiere de un esfuerzo que no es necesario para validar la hipótesis porque no es uno de los principales problemas de los alumnos. |
+| Interacción con el mapa de materias para poder mover de lugar las materias y acomodarlas al gusto del alumno. | Es un detalle visual que no aporte valor a la hipótesis. |
+
+### 2. Qué se construye y qué se simula
+
+| Elemento | Se construye | Se simula / se resuelve a mano | Por qué |
+| :--- | :---: | :---: | :--- |
+| Selección de la carrera | X | | Porque solamente implica crear un listado de carreras acotadas a las principales carreras de la universidad y luego asocia cada elección a un mapa de correlativas |
+| Mapa de materias | | X | Porque la forma correcta de hacerlo sería solicitarle a Universidad una api de la cual obtener cada plan de estudio que permite ajustarnos a los cambios de planes o nuevas materias que vayan sumando, pero esta integración es innecesaria de forma inicial y lo que haremos será un web scrapping de la página oficial de la universidad sobre los planes de cada carrera que utilizaremos en el MVP y almacenaremos esa información de forma estática en una base de datos local. |
+| Camino crítico | x | | Porque es necesario aplicar algún algoritmo que permita conocer el camino crítico y que vaya cambiando a medida que el alumno marque las materias que ya tiene aprobadas/promocionadas porque únicamente mostrar el mapa de correlativas no resuelve el problema de que el alumno incurra en bloqueos involuntarios |
+
+### 3. Flujo principal del MVP
+
+1. El alumno accede a la aplicación y visualiza un desplegable con las carreras disponibles.
+2. Selecciona el desplegable y se le muestran las carreras disponibles.
+3. Selecciona la carrera sobre la cual desea ver el plan de estudio.
+4. Se carga el mapa del plan de estudio con las materias, las conexiones y dependencias entre materias, y un camino crítico que se logra distinguir debido a que se marca en color rojo las materias que lo conforman.
+5. El alumno marca las materias aprobadas/promocionadas.
+6. Cuando “guarda” su estado actual de materias, se actualiza el camino crítico de la carrera según las materias disponibles para cursar.
+
+### 4. Atributos de usabilidad priorizados
+
+Los atributos que seleccionamos en base al análisis del TP 2 son:
+
+*   **Facilidad de aprendizaje:** El producto debe ser fácil de aprender a utilizarlo porque los estudiantes hoy en día ya utilizan otras herramientas como por ejemplo: planillas de Excel, anotaciones en cuadernos y grupos de WhatsApp para poder dar seguimiento a sus planes de estudio, por lo que si nuestro producto es difícil de aprender a utilizar, es probable que los usuarios continúen utilizando las mismas herramientas que hasta ahora porque ya las conocen.
+*   **Recuerdo en el tiempo:** Nuestro producto no será utilizado por los usuarios todo el tiempo, su uso es más esporádico, seguramente cuando más se utilice sea en las fechas cercanas a las inscripciones y un par de veces más durante el año de forma aislada, por lo tanto es necesario que cada vez que el usuario acceda recuerde fácilmente cómo utilizar el sistema, porque al igual que en el punto anterior, si cada vez que deben volver a utilizarlo tardan mucho en recordar cómo acceder a lo que necesitan o tienen que “re aprender” como hacerlo, pueden frustrarse y optar por opciones ya conocidas.
+*   **Satisfacción:** Es importante que los usuarios se sientan satisfechos con el sistema ya que por lo que obtuvimos en las encuestas sienten una gran frustración por no poder entender correctamente a qué materias les conviene anotarse en cada inscripción, por lo que si logramos que los alumnos entiendan bien su situación actual y los ayudamos a planificar sus cuatrimestres de la mejor manera posible a través de los camino críticos, entonces lograremos tener un impacto positivos en ellos y que puedan atravesar la etapa de inscripción de una mejor manera.
